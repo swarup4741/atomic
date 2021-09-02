@@ -17,7 +17,7 @@ export const TemplateLabeled = args => {
   const [isChecked, setIsChecked] = useState(false)
   return <>
     <Switch.Group as="div" className="input-group">
-      <Switch.Label className="label">Toggle Switch</Switch.Label>
+      <Switch.Label className="text">Toggle Switch</Switch.Label>
       <Switch checked={isChecked} onChange={setIsChecked} className={`switch-track ${isChecked && 'switch-track-active'}`}>
         <span aria-hidden="true" className="switch-thumb" />
       </Switch>
