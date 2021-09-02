@@ -15,11 +15,10 @@
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o docs-build"
+    "build-storybook": "build-storybook"
   },
   "husky": {
     "hooks": {
@@ -36,6 +35,16 @@
   "author": "realStandal",
   "repository": "github:locktech/atomic",
   "module": "dist/atomic.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/atomic.cjs.production.min.js",
+      "limit": "5 KB"
+    },
+    {
+      "path": "dist/atomic.esm.js",
+      "limit": "5 KB"
+    }
+  ],
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@headlessui/react": "^1.4.0",
