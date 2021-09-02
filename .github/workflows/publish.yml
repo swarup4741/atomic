@@ -17,6 +17,15 @@ jobs:
         with:
           node-version: '14'
       - name: Publish 🚀
+        id: publish
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+      - if: steps.publish.outputs.type != 'none'
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: false
+          files: |
+            LICENSE.txt
+            src/index.css
