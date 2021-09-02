@@ -4,7 +4,7 @@ name: Build and Deploy Storybook
 
 on:
   push:
-    paths: [".storybook/**", "stories/**", "src/**"]
+    paths: [".storybook/**", "stories/**", "src/**", "package.json"]
 
 jobs:
   build-and-deploy:
@@ -28,4 +28,4 @@ jobs:
           branch: main
           folder: storybook-static
           clean: true
-          target-folder: doc
+          target-folder: docs
