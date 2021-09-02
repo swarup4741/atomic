@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '14'
       - name: Install and Build 🔧
-        run: | # Install npm packages and build the Storybook files
+        run: |
           yarn install
           yarn build-storybook
       - name: Deploy 🚀
