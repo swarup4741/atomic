@@ -26,6 +26,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: main
-          folder: docs-build
+          folder: storybook-static
           clean: true
           target-folder: doc
