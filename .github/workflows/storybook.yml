@@ -4,7 +4,7 @@ name: Build and Deploy Storybook
 
 on:
   push:
-    paths: [".storybook/**", "stories/**", "src/**", "package.json"]
+    paths: [".storybook/**", "stories/**", "src/**", "package.json", "tailwind.config.js", "postcss.config.js"]
 
 jobs:
   build-and-deploy:
