@@ -119,12 +119,15 @@
   }
   .input-group {
     @apply flex flex-col;
-    @apply relative space-y-3 w-full;
+    @apply space-y-3 w-full;
   }
   .input-floating {
     @apply input;
     @apply placeholder-transparent disabled:placeholder-transparent;
     @apply placeholder-shown:pt-2 focus:pt-9 pt-9;
+  }
+  .input-floating-group {
+    @apply input-group relative;
   }
   .input-floating-label {
     @apply text;
@@ -180,7 +183,7 @@
   }
 
   .menu {
-    @apply sm:relative;
+    @apply static sm:relative;
     @apply w-max;
   }
   .menu-items {
@@ -228,7 +231,7 @@
   }
 
   .select {
-    @apply sm:relative select-none;
+    @apply static sm:relative select-none;
   }
   .select-trigger {
     @apply input text-left text;

@@ -87,6 +87,7 @@ The `'muted'` class can be added to the input's label to style it when its input
 ## Floating Label
 
 * `'input-floating'`
+* `'input-floating-group'`
 * `'input-floating-label'`
 
 > **Note:** Due to the way TailwindCSS works, the `'peer'` class *must* be added to the element which uses `'input-floating'`.
@@ -95,7 +96,7 @@ The `'muted'` class can be added to the input's label to style it when its input
 <Canvas>
   <Story name="Floating Label">
     <form>
-      <label className="input-group">
+      <label className="input-floating-group">
         <input className="input-floating peer" placeholder="Floating" />
         <p className="input-floating-label">Floating</p>
         <p className="hint">This hint doesn't float :(</p>
@@ -112,7 +113,7 @@ The `'muted'` class can be added to the input's label to style it when its input
 <Canvas>
   <Story name="Floating Error">
     <form>
-      <label className="input-group">
+      <label className="input-floating-group">
         <input className="input-floating input-error peer" placeholder="Floating" />
         <p className="input-floating-label-error">Floating</p>
         <p className="hint">This hint doesn't float :(</p>
@@ -127,7 +128,7 @@ The `'muted'` class can be added to the input's label to style it when its input
 <Canvas>
   <Story name="Floating Success">
     <form>
-      <label className="input-group">
+      <label className="input-floating-group">
         <input className="input-floating input-success peer" placeholder="Floating" />
         <p className="input-floating-label-success">Floating</p>
         <p className="hint">This hint doesn't float :(</p>
@@ -143,7 +144,7 @@ Unlike the default label, the `'input-floating-label'` element will provide its 
 <Canvas>
   <Story name="Disabled Floating Label">
     <form>
-      <label className="input-group">
+      <label className="input-floating-group">
         <input className="input-floating peer" disabled placeholder="Floating" />
         <p className="input-floating-label">Floating</p>
       </label>
