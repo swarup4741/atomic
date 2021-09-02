@@ -264,9 +264,9 @@
     @apply border border-gray-200 dark:border-gray-600 rounded-full;
     @apply bg-gray-100 dark:bg-gray-700;
     @apply duration-200 ease-in-out transition-colors;
-    @apply h-6 w-14;
+    @apply h-8 w-16;
     @apply relative inline-flex flex-shrink-0 items-center;
-    @apply p-0.5;
+    @apply p-1;
   }
   .switch-track-active {
     @apply border-primary-300 dark:border-primary-300;
@@ -277,7 +277,7 @@
     @apply bg-gray-300;
     @apply duration-200 ease-in-out transition;
     @apply translate-x-0;
-    @apply h-4 w-4;
+    @apply h-5 w-5;
     @apply inline-block;
     @apply pointer-events-none;
   }
