@@ -1,0 +1,60 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+<Meta title="Components/Badge" />
+
+# Badge
+
+The `'badge'` is a small, visual component that can help to distinguish information from surrounding elements.
+This distinction is made without completely grabbing the user's attention, or can be used to highlight specific information the user may need time-and-time again.
+
+<Canvas>
+  <Story name="Default">
+    <span className="badge">Badge</span>
+  </Story>
+</Canvas>
+
+## Size
+
+The amount of `padding` surrounding the content of the badge can be controlled using the following classes:
+
+* `badge-sm`
+* `badge-md`
+* `badge-lg`
+
+By default, badges are sized to `badge-md`.
+
+<Canvas>
+  <Story name="Small">
+    <span className="badge badge-sm">Badge</span>
+  </Story>
+  <Story name="Medium">
+    <span className="badge badge-md">Badge</span>
+  </Story>
+  <Story name="Large">
+    <span className="badge badge-lg">Badge</span>
+  </Story>
+</Canvas>
+
+## Color
+
+`'badge-primary'` can be used to apply your configured primary color to the badge.
+
+<Canvas>
+  <Story name="Primary">
+    <span className="badge-primary">Primary</span>
+  </Story>
+</Canvas>
+
+Additional colors can be added by overriding the default styles of the badge.
+
+> The example below applies them inline, but extracting styles into a reusable class is recommended.
+
+<Canvas>
+  <Story name="Custom Color">
+    <span
+      className="badge border-red-400 dark:border-red-600 bg-red-200 dark:bg-red-900 text-red-900 dark:text-red-50"
+    >
+      Danger
+    </span>
+  </Story>
+</Canvas>

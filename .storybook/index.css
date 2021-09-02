@@ -1,0 +1,24 @@
+.sbdocs.sbdocs-preview {
+  background: #F4F4F6 !important;
+}
+
+body.dark .sbdocs.sbdocs-preview {
+  background: #14161F !important;
+}
+
+.docs-story > *:first-child {
+  padding: 0 !important;
+}
+
+.lg-canvas .innerZoomElementWrapper {
+  height: 18rem;
+}
+.xl-canvas .innerZoomElementWrapper {
+  height: 25rem;
+}
+.xl2-canvas .innerZoomElementWrapper {
+  height: 30rem;
+}
+.xl3-canvas .innerZoomElementWrapper {
+  height: 35rem;
+}

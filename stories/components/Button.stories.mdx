@@ -1,0 +1,113 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+export const Template = (args) => <button {...args} />
+
+<Meta argTypes={{ onClick: { action: 'onClick' } }} title="Components/Button" />
+
+# Button
+
+The `'button'` is a simple component which provides an extensible platform for creating interactive elements, which are typically clicked or tapped.
+
+<Canvas>
+  <Story
+    args={{ children: 'Clickable', className: 'btn' }}
+    name="Default"
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Disabled
+
+The disabled styling provided should suffice for any, custom included, renditions of the button component.
+
+<Canvas>
+  <Story
+    args={{ children: 'Disabled', className: 'btn', disabled: true }}
+    name="Disabled"
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Sizes
+
+The amount of `padding` surrounding the content of a button and its outter edge can be controlled using three size utilities:
+
+* `btn-sm`
+* `btn-md`
+* `btn-lg`
+
+By default, buttons are sized to `btn-md`.
+
+<Canvas>
+  <Story
+    args={{ children: 'Clickable', className: 'btn btn-sm' }}
+    name="Small"
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    args={{ children: 'Clickable', className: 'btn btn-md' }}
+    name="Medium"
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    args={{ children: 'Clickable', className: 'btn btn-lg' }}
+    name="Large"
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Color
+
+`btn-primary` can be used to styling the button using your configured primary color.
+
+<Canvas>
+  <Story
+    args={{ children: 'Primary', className: 'btn-primary' }}
+    name="Primary"
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+A custom color can be created by defining a class within Tailwind's `utilities` layer:
+
+```css
+@layer utilities {
+  .btn-red {
+    @apply btn; /* btn is applied first, to overwrite its defaults */
+    @apply bg-red-500 hover:bg-red-600 active:bg-red-700;
+    @apply focus:ring-red-400 active:focus:ring-red-500;
+    @apply text-gray-50;
+  }
+}
+```
+
+> The example below applies them inline, but extracting styles into a reusable class is recommended.
+
+<Canvas>
+  <Story
+    args={{
+      children: 'Danger!',
+      className: 'btn bg-red-500 hover:bg-red-600 active:bg-red-700 focus:ring-red-400 active:focus:ring-red-500 text-gray-50'
+    }}
+    name="Custom Color"
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    args={{
+      children: 'Danger!',
+      className: 'btn bg-red-500 hover:bg-red-600 active:bg-red-700 focus:ring-red-400 active:focus:ring-red-500 text-gray-50',
+      disabled: true
+    }}
+    name="Disabled Custom Color"
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+

@@ -1,0 +1,111 @@
+import { useState } from 'react'
+import { Dialog, Switch } from '@headlessui/react'
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+export const Template = args => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isChecked, setIsChecked] = useState(false)
+  return <>
+    <button className="btn" onClick={() => setIsOpen(true)}>Open Dialog</button>
+    <Dialog className="modal" open={isOpen} onClose={() => setIsOpen(false)} {...args}>
+      <Dialog.Overlay className="modal-overlay" />
+      <div className="modal-layout">
+        <div className="card p-6 space-y-6">
+          <div className="space-y-2">
+            <Dialog.Title className="font-medium text-3xl text-gray-900 dark:text-gray-50">Settings</Dialog.Title>
+            <Dialog.Description className="text-sm text-gray-400 dark:text-gray-300">Update your profile's settings.</Dialog.Description>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac mi ac eros semper consequat. Pellentesque vitae felis sollicitudin, consequat elit et, ornare odio.
+          </p>
+          <p>
+            Cras semper lobortis lectus nec dictum. Duis tempor odio eu purus rutrum, hendrerit auctor leo lacinia. Phasellus sit amet nunc accumsan, molestie arcu eget, laoreet tortor.
+          </p>
+          <label className="input-group">
+            <input className="input-floating peer" placeholder="Username" readOnly type="text" value="Carl" />
+            <p className="input-floating-label">Username</p>
+            <p className="hint">Get wild! Use whatever you want!</p>
+          </label>
+          <label className="input-group">
+            <input className="input-floating peer" placeholder="New Password" type="password" />
+            <p className="input-floating-label">New Password</p>
+          </label>
+          <Switch.Group as="label" className="input-group">
+            <Switch.Label className="text">Stay Logged In</Switch.Label>
+            <Switch checked={isChecked} onChange={setIsChecked} className={`switch-track ${isChecked && 'switch-track-active'}`}>
+              <span aria-hidden="true" className="switch-thumb" />
+            </Switch>
+            <Switch.Label className="hint">When turned on, the application will not log you out of your account after closing it.</Switch.Label>
+          </Switch.Group>
+          <div className="flex flex-row self-end space-x-4">
+            <button
+              className="btn-primary"
+              onClick={() => setIsOpen(false)}  
+            >
+              Update
+            </button>
+            <button
+              className="btn border border-red-500 bg-transparent hover:bg-red-600 active:bg-red-700 focus:ring-red-500 text-gray-900 dark:text-gray-50 hover:text-gray-50"
+              onClick={() => setIsOpen(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </Dialog>
+  </>
+}
+
+<Meta title="Components/Modal" />
+
+# Modal
+
+The Modal component is designed to provide a seperate window which can display abitrary information, aimed at grabbing the user's full attention.
+
+Content placed within the modal will be visually seperated from the rest of the page.
+If the modal's content [overflows](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow), it will scroll seperate from the rest of the page.
+
+> The modal's examples are best viewed in *Canvas* mode; swap to it using the Toolbar at the top of the page.
+
+> These examples make use of [HeadlessUI's `Dialog` component](https://headlessui.dev/react/dialog).
+> Animations have been purposefully left out.
+
+## Full Example
+
+> Storybook's built in code-preview does *not* like the modal. The markup below provides all the information required to start using the component.
+
+```html
+<div class="modal">
+  <div class="modal-overlay" />
+  <div class="modal-layout">
+    <div class="card p-6 space-y-6">
+      <!-- ... -->
+    </div>
+  </div>
+</div>
+```
+
+<Story name="Full Example">
+  {Template.bind({})}
+</Story>
+
+## Modal
+
+The `'modal'` class should be used on the root element of your modal. It will ensure your modal takes up the entire screen, and that its content scrolls indepdenent the rest of the page.
+
+## Overlay
+
+The `'modal-overlay'` class can be used to designate an element which is placed inbetween the modal and the rest of the page.
+
+It will provide a near-opaque background behind the modal, drawing the user's attention to the modal's content.
+
+## Layout
+
+`'modal-layout'` can be used on an element which wraps the content of a modal.
+
+This class will take care of positioning the content, putting it at the center of the screen, and raising it above the `overlay` element.
+It will provide a responsive `margin` to the top and bottom of the modal on screens larger than the configured [`sm` breakpoint](https://tailwindcss.com/docs/breakpoints).
+The class will ensure the content does not exceed a [width of `xl`](https://tailwindcss.com/docs/width).
+
+> Note: If you plan to leave the `modal-layout` out, you will need to provide a [position](https://developer.mozilla.org/en-US/docs/Web/CSS/position) and [z-index](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index) for your modal's content to ensure it's place above the `modal-overlay`.

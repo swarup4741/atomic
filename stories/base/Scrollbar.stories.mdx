@@ -1,0 +1,16 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+<Meta title="Base/Scrollbar" />
+
+# Scrollbar
+
+Atomic provides styling to the brower's native scrollbar. This styling is minimal, intended to improve its consistency with the rest of the library;
+integrating its color into Tailwind's.
+
+<Canvas>
+  <Story name="Default">
+    <div className="h-[30rem] overflow-y-scroll">
+      <p className="h-[100rem]">Hello</p>
+    </div>
+  </Story>
+</Canvas>

@@ -1,0 +1,75 @@
+import { useState } from 'react'
+import { Switch } from '@headlessui/react'
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+<Meta title="Components/Switch" />
+
+export const Template = ({ checked = false }) => {
+  const [isChecked, setIsChecked] = useState(checked)
+  return <>
+    <Switch checked={isChecked} onChange={setIsChecked} className={`switch-track ${isChecked ? 'switch-track-active': ''}`}>
+      <span aria-hidden="true" className="switch-thumb" />
+    </Switch>
+  </>
+}
+
+export const TemplateLabeled = args => {
+  const [isChecked, setIsChecked] = useState(false)
+  return <>
+    <Switch.Group as="div" className="input-group">
+      <Switch.Label className="label">Toggle Switch</Switch.Label>
+      <Switch checked={isChecked} onChange={setIsChecked} className={`switch-track ${isChecked && 'switch-track-active'}`}>
+        <span aria-hidden="true" className="switch-thumb" />
+      </Switch>
+      <Switch.Label className="hint">Go ahead, give it a click!</Switch.Label>
+    </Switch.Group>
+  </>
+}
+
+# Switch
+
+The `switch` component is a interactive element which can be used to toggle between two states; 'on' and 'off'.
+
+A switch is made up of two parts: the `track` and the `thumb`. The `track` is the background of the switch and the `thumb` is the handle that slides along the track.
+Interactions with the switch should be facilitated through its `track` - providing a greater surface area for your user to convey their intentions.
+
+> These examples make use of [HeadlessUI's `Switch` component](https://headlessui.dev/react/switch).
+
+Creating a switch consist of defining two seperate classes:
+
+* `'switch-track'` can be applied to an element which wraps another element making use of
+* `'switch-thumb'` applies the "knob" which appears to move in response to the switch's state.
+
+```html
+<button class="switch-track">
+  <span class="switch-thumb" />
+</button>
+```
+
+<Canvas>
+  <Story name="Default">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Active
+
+The `'switch-track-active'` class can be applied alongside `'switch-track'`, visually indicating the switch is in the 'on' state.
+This class will effect both the track and thumb's styling.
+
+<Canvas>
+  <Story args={{ checked: true }} name="Active">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Labeled
+
+The `'input-group'`, `'text'`, and `'hint'` classes can be used to provide additional context to your user, while maintaining a consistent style.
+
+<Canvas>
+  <Story name="Labeled">
+    {TemplateLabeled.bind({})}
+  </Story>
+</Canvas>
+

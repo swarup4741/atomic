@@ -1,0 +1,65 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+export const Template = (args) => <div {...args} />
+
+<Meta title="Components/Card" />
+
+# Card
+
+The `'card'` component provides a distinctive background, border, and an elevating shadow for its children.
+
+<Canvas>
+  <Story
+    args={{ children: <p>Hello world!</p>, className: 'card' }}
+    name="Default"
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Padding
+
+Padding can be added to the card either by applying a `'p'` class to the element making use of `'card'`, or by creating a custom class that can be reused.
+
+```css
+@layer utilities {
+  .card-generic {
+    @apply card;
+    @apply p-4;
+  }
+}
+```
+
+> The example below applies padding inline, but extracting styles into a reusable class is recommended.
+
+<Canvas>
+  <Story
+    args={{
+      children: (
+        <>
+          <h1 className="font-semibold text-2xl">Hello title</h1>
+          <p>Hello world!</p>
+        </>
+      ),
+      className: 'card p-4 space-y-2',
+    }}
+    name="Padded"
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Interactive
+
+A card can be made to visually respond to user interaction by adding the `'interactive'` class.
+
+> Note: Make sure your card uses an element which can be interacted with, such as a `<button>`, or add the `tabIndex` attribute, as shown below.
+
+<Canvas>
+  <Story
+    args={{ children: <p>Hello world!</p>, className: 'card-interactive p-4', tabIndex: 1 }}
+    name="Interactive"
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

@@ -1,0 +1,153 @@
+import { useState } from 'react'
+import { Listbox } from '@headlessui/react'
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+<Meta className="tall-canvas" title="Components/Select" />
+
+export const short = [
+  { value: 'one', label: 'One', disabled: false },
+  { value: 'two', label: 'Two', disabled: false },
+  { value: 'three', label: 'Three', disabled: false },
+]
+export const disabledList = [
+  { value: 'one', label: 'One', disabled: false },
+  { value: 'two', label: 'Two', disabled: true },
+  { value: 'three', label: 'Three', disabled: false },
+  { value: 'four', label: 'Four', disabled: false },
+  { value: 'five', label: 'Five', disabled: false },
+  { value: 'six', label: 'Six', disabled: true },
+  { value: 'seven', label: 'Seven', disabled: false },
+]
+export const custom = [
+  { value: 'one', label: 'One', disabled: false, className: '' },
+  { value: 'two', label: 'Two', disabled: false, className: 'text-red-600 dark:text-red-400' },
+  { value: 'three', label: 'Three', disabled: false, className: '' },
+]
+export const long = [
+  { value: 'one', label: 'One', disabled: false },
+  { value: 'two', label: 'Two', disabled: false },
+  { value: 'three', label: 'Three', disabled: false },
+  { value: 'four', label: 'Four', disabled: false },
+  { value: 'five', label: 'Five', disabled: false },
+  { value: 'six', label: 'Six', disabled: false },
+  { value: 'seven', label: 'Seven', disabled: false },
+  { value: 'eight', label: 'Eight', disabled: false },
+  { value: 'nine', label: 'Nine', disabled: false },
+  { value: 'ten', label: 'Ten', disabled: false },
+  { value: 'eleven', label: 'Eleven', disabled: false },
+]
+
+export const Template = ({ labeled, options, useStatic }) => {
+  const [value, setValue] = useState(options[0])
+  return <>
+    <Listbox as="div" className="input-group select" onChange={setValue} value={value}>
+      {labeled && <Listbox.Label className="text">Select</Listbox.Label>}
+      <Listbox.Button className="select-trigger">{value.label}</Listbox.Button>
+      {labeled && <Listbox.Label className="hint">Give it a click to focus the select component.</Listbox.Label>}
+      <Listbox.Options className="select-items">
+        {options.map((value, index) => (
+          <Listbox.Option
+            as="button"
+            className={({ active, disabled, selected }) => `
+              ${useStatic ? 'select-item-static' : 'select-item'}
+              ${active && !useStatic ? 'select-item-active' : ''}
+              ${selected ? 'select-item-selected' : ''}
+              ${disabled ? 'select-item-disabled' : ''}
+            `}
+            disabled={value.disabled}
+            key={index}
+            value={value}
+          >
+            {value.label}
+          </Listbox.Option>
+        ))}
+      </Listbox.Options>
+    </Listbox>
+  </>
+}
+
+# Select
+
+The `select` component is designed to provide a dropdown (styled through the [menu component](?path=/docs/components-menu--default-story))
+which integrates seamlessly with other form components (input, switch, ...).
+
+> These examples make use of [HeadlessUI's `Listbox` component](https://headlessui.dev/react/listbox).
+> Animations have been purposefully left out.
+
+Creating a select component consist of defining four seperate parts:
+
+* `'select'` - Wrapped around the root element of the select component.
+* `'select-trigger'` - Wrapped around the button that opens the select component.
+* `'select-items'` - Wrapped around the list of `'select-items'`.
+* `'select-item'` - Added to each indavidual item in the list.
+
+```html
+<div class="select">
+  <button class="select-trigger">Trigger me menu</button>
+  <div class="select-items">
+    <button class="select-item">Item</button>
+    <button class="select-item">Also an item</button>
+    <!-- ... -->
+  </div>
+</div>
+```
+
+<Canvas className="lg-canvas">
+  <Story args={{ labeled: false, options: short, useStatic: false }} name="Default">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Active State
+
+By default, `'select-items'` will provide **zero** distinction for items which are being interacted with by your user.
+
+To mark an item as active, you can add the `'select-item-active'` class to a `'select-item'`; done as the user interacts with the menu.
+
+Alternatively, you can use the `'select-item-static'` class, in place of `'select-item'`. This will apply styling to the item, powered by pure-CSS (shown below).
+
+> Assigning the `'select-item-active'` class is the recommended approach. In this way, the class can be applied when an element is hovered over,
+> when the user navigates to an item using their keyboard, etc. - this is provided out-of-the-box by [HeadlessUI](https://headlessui.dev/).
+
+<Canvas className="lg-canvas">
+  <Story args={{ labeled: false, options: short, useStatic: true }} name="Active State">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Disabled
+
+The `'select-item-disabled'` class can be added to an item to provide it disabled styling.
+
+<Canvas className="xl2-canvas">
+  <Story args={{ labeled: false, options: disabledList, useStatic: false }} name="Disabled">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Labeled
+
+The `'input-group'`, `'text'`, and `'hint'` classes can be used to provide additional context to your user, while maintaining a consistent style.
+
+<Canvas className="xl-canvas">
+  <Story args={{ labeled: true, options: short, useStatic: false }} name="Labeled">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Restricted Height
+
+By default, the select component will provide a better user experience on devices smaller than the `sm` breakpoint.
+
+The styling provided is inspired by [Material Design's bottom-sheet component](https://material.io/components/sheets-bottom).
+
+> Preview this styling by swapping to the *Canvas* mode; then use the "change preview size" button to select a smaller display (next to the picture-icon).
+
+* On screens **larger** than `sm`, `'select-items'` will have a max height of `24rem` (Tailwind's `h-96` class).
+* On screens **smaller** than `sm`, `'select-items'` will have a max height of `75%` of the viewport's total height.
+
+<Canvas className="xl3-canvas">
+  <Story args={{ labeled: false, options: long, useStatic: false }} name="Restricted Height">
+    {Template.bind({})}
+  </Story>
+</Canvas>

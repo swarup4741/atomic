@@ -1,0 +1,173 @@
+import { Menu } from '@headlessui/react'
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+<Meta title="Components/Menu" />
+
+# Menu
+
+The menu component provides a dropdown which is designed to display a *simple* set of items in a vertical list.
+
+> Menu is designed to be used in an arbitrary context.
+> Consider using the [Select component](?path=/docs/components-select--page) if you need a form-ready dropdown.
+
+> These examples make use of [HeadlessUI's `Menu` component](https://headlessui.dev/react/menu).
+> Animations have been purposefully left out.
+
+Constructing a menu consist of defining three seperate classes:
+
+* `'menu'` - The root element which will wrap both the menu items, and the trigger which will display the menu.
+* `'menu-items'` - Wrapping the list of menu items.
+* `'menu-item'` - Wrapping each of the indavidual menu items.
+
+```html
+<div class="menu">
+  <button>Trigger me menu</button>
+  <div class="menu-items">
+    <button class="menu-item">Item</button>
+    <button class="menu-item">Also an item</button>
+    <!-- ... -->
+  </div>
+</div>
+```
+
+<Canvas className="lg-canvas">
+  <Story name="Default">
+    <Menu as="div" className="menu">
+      <Menu.Button className="btn">Open Menu</Menu.Button>
+      <Menu.Items className="menu-items">
+        <Menu.Item>
+          {({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item 1</button>}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item 2</button>}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item 3</button>}
+        </Menu.Item>
+      </Menu.Items>
+    </Menu>
+  </Story>
+</Canvas>
+
+## Active State
+
+By default, `'menu-items'` will provide **zero** distinction for items which are being interacted with by your user.
+
+To mark an item as active, you can add the `'menu-item-active'` class to a `'menu-item'`; done as the user interacts with the menu.
+
+Alternatively, you can use the `'menu-item-static'` class. This will apply styling to the item, powered by pure-CSS (shown below).
+
+> Assigning the `'menu-item-active'` class is the recommended approach. In this way, the class can be applied when an element is hovered over,
+> when the user navigates to an item using their keyboard, etc. - this is provided out-of-the-box by HeadlessUI.
+
+<Canvas className="lg-canvas">
+  <Story name="Static">
+      <Menu as="div" className="menu">
+      <Menu.Button className="btn">Open Menu</Menu.Button>
+      <Menu.Items className="menu-items">
+        <Menu.Item as="button" className="menu-item-static">Item 1</Menu.Item>
+        <Menu.Item as="button" className="menu-item-static">Item 2</Menu.Item>
+        <Menu.Item as="button" className="menu-item-static">Item 3</Menu.Item>
+      </Menu.Items>
+    </Menu>
+  </Story>
+</Canvas>
+
+## Right Aligned
+
+When your menu is placed close to the right side of the screen, you may wish to align the menu's items to the right edge of its parent (`'menu'`).
+
+To do so, simply replace `'menu-items'` with `'menu-items-right'`.
+
+> Note: `'menu-items-right'` **will not** align the entire `'menu'`, only the menu's items.
+
+> Note: Right-alignment will only take effect when the viewport is larger than the configured `sm` breakpoint;
+> in conjunction with [Restricted Height](#restricted-height) styling.
+
+<Canvas className="lg-canvas">
+  <Story name="Right Aligned">
+    <Menu as="div" className="menu ml-auto">
+      <Menu.Button className="btn">Open Menu</Menu.Button>
+      <Menu.Items className="menu-items-right">
+        <Menu.Item>
+          {({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item 1</button>}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item 2</button>}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item 3</button>}
+        </Menu.Item>
+      </Menu.Items>
+    </Menu>
+  </Story>
+</Canvas>
+
+## Custom Items
+
+Customizing a `'menu-item'` is as simple as overriding the styles applied by default.
+
+> The example below overwrites styles inline, extracting styling out into a reusable class is recommended.
+
+<Canvas className="lg-canvas">
+  <Story name="Custom Items">
+    <Menu as="div" className="menu">
+      <Menu.Button className="btn">Open Menu</Menu.Button>
+      <Menu.Items className="menu-items">
+        <Menu.Item>
+          {({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Account Settings</button>}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Application Settings</button>}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) =>
+            <button
+              className={`menu-item text-red-700 dark:text-red-300 focus:ring-red-400 ${active ? 'menu-item-active' : ''}`}
+            >
+              Logout
+            </button>
+          }
+        </Menu.Item>
+      </Menu.Items>
+    </Menu>
+  </Story>
+</Canvas>
+
+## Responsive
+
+By default, the menu component will provide a better user experience on devices smaller than the `sm` breakpoint.
+
+The styling provided is inspired by [Material Design's bottom-sheet component](https://material.io/components/sheets-bottom).
+
+> Preview this styling by swapping to the *Canvas* mode; then use the "change preview size" button to select a smaller display (next to the picture-icon).
+
+## Restricted Height
+
+Menus which contain a large number of items will have a restricted height, so as to not overflow the viewport.
+
+* On screens **larger** than `sm`, `'menu-items'` will have a max height of `24rem` (Tailwind's `h-96` class).
+* On screens **smaller** than `sm`, `'menu-items'` will have a max height of `75%` of the viewport's total height.
+
+<Canvas className="xl3-canvas">
+  <Story name="Restricted Height">
+    <Menu as="div" className="menu">
+      <Menu.Button className="btn">Open Menu</Menu.Button>
+      <Menu.Items className="menu-items">
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+        <Menu.Item>{({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item</button>}</Menu.Item>
+      </Menu.Items>
+    </Menu>
+  </Story>
+</Canvas>

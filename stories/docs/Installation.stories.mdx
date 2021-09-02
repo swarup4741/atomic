@@ -1,0 +1,73 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Documentation/Installation" />
+
+# Installation
+
+On this page you can find all the steps required to begin building a UI which uses Atomic's styling.
+
+* 0 - [TailwindCSS](#0-tailwindcss)
+  * 0.1 - [Setting up the JIT compiler](#01-setting-up-the-jit-compiler)
+  * 0.2 - [Theming](#02-theming)
+  * 0.3 - [Color palette](#03-colors)
+* 1 - Downloading Atomic
+
+## 0) TailwindCSS
+
+[Installing and configuring Tailwind](https://tailwindcss.com/docs/installation) is well out of this documentation's scope. How you go about doing this will be largely influenced by what framework or library you're using, or if you're even using one.
+
+> **Atomic relies upon Tailwind v2.1 or higher.**
+
+### 0.1) Setting up the JIT compiler
+
+You should configure your installation of Tailwind to use the [JIT compiler](https://tailwindcss.com/docs/just-in-time-mode).
+Creating a `purge` configuration which includes any files that will make use of Atomic's styling.
+
+```js
+// tailwind.config.js
+module.exports = {
+  mode: 'jit',
+  purge: [
+    './src/**/*.{js,jsx,ts,tsx,html,css}',
+  ],
+}
+```
+
+### 0.2) Theming
+
+Atomic makes no opinionations about the colors it uses, outside of those described in [Color palette](#03-color-palette).
+
+The theming which you *can* take advantage of is Tailwind's built-in support for detecting or toggling between [light and dark mode](https://tailwindcss.com/docs/dark-mode).
+
+You should enable dark mode in your `tailwind.config.js`, using whichever method is most appropriate for your project.
+
+> The use of `light` and `night` themes is explained in later documents.
+
+### 0.3) Colors
+
+Atomic only makes assumptions that two colors will exist: `gray` and `primary`.
+
+These colors should follow [Tailwind's lead](https://tailwindcss.com/docs/customizing-colors#overview) and have 10 different shades; named as given in the link.
+
+> `primary` was chosen to fit with what is commonly found in a design system or component library. See its [Cookbook entry](?path=/docs/documentation-cookbook--page#primary-color) for more information.
+
+```js
+// tailwind.config.js
+const colors = require('tailwindcss/colors')
+
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        gray: {
+          50: '#F4F4F6',
+          100: '#E5E5EB',
+          200: '#C0C0CE',
+          // ...
+        },
+        primary: colors.blue,
+      }
+    },
+  },
+}
+```

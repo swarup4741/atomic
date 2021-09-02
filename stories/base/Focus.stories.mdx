@@ -1,0 +1,32 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+<Meta title="Base/Focus" />
+
+# Focus
+
+Instead of your user's browser's native focus, you can make use of Atomic's. This is as simple as adding the `'focus'` class to your elements;
+or using it in your classes `@apply` block.
+
+All interactive elements in Atomic extend this classes styling.
+
+## Overriding Color
+
+To override the color of the focus ring, you can provide an appropriate [`ring-color` property from Tailwind](https://tailwindcss.com/docs/ring-color).
+
+For example, you can use the CSS below to turn all `btn` element's focus ring color to blue:
+
+```css
+.btn {
+  @apply focus:ring-blue-400 active:focus:ring-blue-500;
+}
+```
+
+To override all instances of the focus class, provide your styling in the `utilities` layer:
+
+```css
+@layer utilities {
+  .focus {
+    @apply focus:ring-primary-500;
+  }
+}
+```

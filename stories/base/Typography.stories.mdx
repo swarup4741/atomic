@@ -1,0 +1,67 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+<Meta title="Base/Typography" />
+
+export const bases = [
+  { name: 'Text', className: 'text' },
+  { name: 'Bold', className: 'bold' },
+  { name: 'Muted', className: 'muted' },
+  { name: 'Italic', className: 'italic' },
+]
+export const types = [
+  { name: 'Heading', className: 'heading' },
+  { name: 'Subheading', className: 'subheading' },
+  { name: 'Title', className: 'title' },
+  { name: 'Subtitle', className: 'subtitle' },
+  { name: 'Hint', className: 'hint' },
+  { name: 'Caption', className: 'caption' },
+]
+
+export const Template = ({ options }) => (
+  <table className="border border-gray-300 dark:border-gray-700 w-full">
+    <tr>
+      <th className="border border-gray-300 dark:border-gray-700 p-2 text">Name</th>
+      <th className="border border-gray-300 dark:border-gray-700 p-2 text">Class</th>
+      <th className="border border-gray-300 dark:border-gray-700 p-2 text">Notes</th>
+    </tr>
+    {options.map(({ className, name, notes }) => (
+      <tr key={className}>
+        <td className="border border-gray-300 dark:border-gray-700 p-6">
+          <p className={className}>{name}</p>
+        </td>
+        <td className="border border-gray-300 dark:border-gray-700 p-6">
+          <p
+            className="bg-gray-100 dark:bg-gray-700 font-mono px-2 py-1 rounded-md text-red-900 dark:text-red-200 w-max"
+          >
+            {`'${className}'`}
+          </p>
+        </td>
+        <td className="border border-gray-300 dark:border-gray-700 p-6 max-w-[8rem]">
+          <p
+            className="muted"
+          >
+            {notes}
+          </p>
+        </td>
+      </tr>
+    ))}
+  </table>
+)
+
+# Typography
+
+All of Atomic's typography is provided through classes. No specific markup is required, following suit with Atomic's and Tailwind's philosophys.
+
+<Canvas>
+  <Story args={{ options: bases }} name="Base">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+> Some of the following styles take inspiration from [Material Design](https://material.io/design/typography/the-type-system.html).
+
+<Canvas>
+  <Story args={{ options: types }} name="Default">
+    {Template.bind({})}
+  </Story>
+</Canvas>

@@ -1,0 +1,25 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs'
+
+<Meta title="Base/Body" />
+
+# Body
+
+Atomic will style the `<body>` element in response to the presence or lack of the `'dark'` class.
+This functionality is inline with [TailwindCSS' dark mode](https://tailwindcss.com/docs/dark-mode).
+
+> Use the "theme" control, found on the Toolbar (the picture icon), to toggle between *light* and *night* themes; the box below will change color in response.
+
+<Canvas>
+  <Story name="Default" />
+</Canvas>
+
+To turn this functionality off, supply your own styling for the `body` and `body.dark` selectors.
+The following will apply the `bg-gray-50` class to the `<body>` element, regardless of the current color-mode.
+
+```css
+@layer base {
+  body, body.dark {
+    @apply bg-gray-50;
+  }
+}
+```
