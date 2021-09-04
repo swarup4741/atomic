@@ -1,7 +1,7 @@
 # Atomic
 
 Opinionated component-styling created using the [TailwindCSS framework](https://tailwindcss.com/).
-All styles are provided as a [Tailwind plugin](https://tailwindcss.com/docs/plugins), providing full incorporation with the TailwindCSS framework.
+All styles are provided as a [Tailwind plugin](https://tailwindcss.com/docs/plugins), providing full incorporation with Tailwind's layers system.
 
 Check out the documentation for a full introduction and instructions on getting started.
 
