@@ -4,7 +4,6 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/theming',
     'storybook-addon-themes',
-    // 'storybook-dark-mode',
     {
       name: '@storybook/addon-essentials',
       options: {
@@ -20,8 +19,4 @@ module.exports = {
       },
     },
   ],
-  // https://storybook.js.org/docs/react/configure/typescript#mainjs-configuration
-  typescript: {
-    check: true, // type-check stories during Storybook build
-  }
 }
