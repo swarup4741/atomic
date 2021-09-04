@@ -45,8 +45,7 @@ const switchComp = {
         display: 'inline-block',
         height: theme('height.5'),
         pointerEvents: 'none',
-        transform:
-          'translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))',
+        transform: 'translateX(var(--tw-translate-x))',
         width: theme('width.5'),
         ...movement.base({ theme }).movement,
       },
