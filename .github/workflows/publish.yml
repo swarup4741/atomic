@@ -2,7 +2,7 @@ name: Build and Publish Library
 
 on:
   push:
-    paths: ["src/**"]
+    paths: ["src/**", "package.json"]
 
 jobs:
   build-and-publish:
