@@ -4,17 +4,17 @@ import { Meta, Story, Canvas } from '@storybook/addon-docs'
 
 export const bases = [
   { name: 'Text', className: 'text' },
-  { name: 'Bold', className: 'bold' },
   { name: 'Muted', className: 'muted' },
-  { name: 'Italic', className: 'italic' },
+  { name: 'Bold', className: 'text bold' },
+  { name: 'Italic', className: 'text italic' },
 ]
 export const types = [
-  { name: 'Heading', className: 'heading' },
-  { name: 'Subheading', className: 'subheading' },
-  { name: 'Title', className: 'title' },
-  { name: 'Subtitle', className: 'subtitle' },
-  { name: 'Hint', className: 'hint' },
-  { name: 'Caption', className: 'caption' },
+  { name: 'Heading', className: 'text heading' },
+  { name: 'Subheading', className: 'text subheading' },
+  { name: 'Title', className: 'text title' },
+  { name: 'Subtitle', className: 'muted subtitle' },
+  { name: 'Hint', className: 'muted hint' },
+  { name: 'Caption', className: 'muted caption' },
 ]
 
 export const Template = ({ options }) => (

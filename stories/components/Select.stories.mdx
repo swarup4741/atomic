@@ -93,7 +93,7 @@ Creating a select component consist of defining four seperate parts:
 ```
 
 <Canvas className="lg-canvas">
-  <Story args={{ labeled: false, options: short, useStatic: false }} name="Default">
+  <Story name="Default" args={{ labeled: false, options: short, useStatic: false }}>
     {Template.bind({})}
   </Story>
 </Canvas>
@@ -104,23 +104,15 @@ By default, `'select-items'` will provide **zero** distinction for items which a
 
 To mark an item as active, you can add the `'select-item-active'` class to a `'select-item'`; done as the user interacts with the menu.
 
-Alternatively, you can use the `'select-item-static'` class, in place of `'select-item'`. This will apply styling to the item, powered by pure-CSS (shown below).
-
-> Assigning the `'select-item-active'` class is the recommended approach. In this way, the class can be applied when an element is hovered over,
+> Assigning the `'select-item-active'` class using JavaScript is recommended. In this way, the class can be applied when an element is hovered over,
 > when the user navigates to an item using their keyboard, etc. - this is provided out-of-the-box by [HeadlessUI](https://headlessui.dev/).
-
-<Canvas className="lg-canvas">
-  <Story args={{ labeled: false, options: short, useStatic: true }} name="Active State">
-    {Template.bind({})}
-  </Story>
-</Canvas>
 
 ## Disabled
 
 The `'select-item-disabled'` class can be added to an item to provide it disabled styling.
 
 <Canvas className="xl2-canvas">
-  <Story args={{ labeled: false, options: disabledList, useStatic: false }} name="Disabled">
+  <Story name="Disabled Items" args={{ labeled: false, options: disabledList, useStatic: false }}>
     {Template.bind({})}
   </Story>
 </Canvas>
@@ -130,7 +122,7 @@ The `'select-item-disabled'` class can be added to an item to provide it disable
 The `'input-group'`, `'text'`, and `'hint'` classes can be used to provide additional context to your user, while maintaining a consistent style.
 
 <Canvas className="xl-canvas">
-  <Story args={{ labeled: true, options: short, useStatic: false }} name="Labeled">
+  <Story name="Labeled" args={{ labeled: true, options: short, useStatic: false }}>
     {Template.bind({})}
   </Story>
 </Canvas>
@@ -147,7 +139,7 @@ The styling provided is inspired by [Material Design's bottom-sheet component](h
 * On screens **smaller** than `sm`, `'select-items'` will have a max height of `75%` of the viewport's total height.
 
 <Canvas className="xl3-canvas">
-  <Story args={{ labeled: false, options: long, useStatic: false }} name="Restricted Height">
+  <Story name="Restricted Height" args={{ labeled: false, options: long, useStatic: false }}>
     {Template.bind({})}
   </Story>
 </Canvas>

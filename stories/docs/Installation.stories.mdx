@@ -6,85 +6,105 @@ import { Meta } from '@storybook/addon-docs';
 
 On this page you can find all the steps required to begin building a UI which uses Atomic's styling.
 
-* 0 - [TailwindCSS](#0-tailwindcss)
-  * 0.1 - [Setting up the JIT compiler](#01-setting-up-the-jit-compiler)
-  * 0.2 - [Theming](#02-theming)
-  * 0.3 - [Color palette](#03-colors)
-* 1 - [Downloading Atomic](#1-downloading-atomic)
+* [TailwindCSS](#tailwindcss)
+* [Downloading](#downloading)
+* [Installing](#installing)
+  * [As a Preset](#as-a-preset)
+  * [As a Plugin](#as-a-plugin)
 
-## 0) TailwindCSS
+## TailwindCSS
 
-[Installing and configuring Tailwind](https://tailwindcss.com/docs/installation) is well out of this documentation's scope. How you go about doing this will be largely influenced by what framework or library you're using, or if you're even using one.
+[Installing TailwindCSS](https://tailwindcss.com/docs/installation) is out of this documentation's scope. This process will largely depend on the framework or library backing your application; or if one even is.
 
-> **Atomic relies upon Tailwind v2.1 or higher.**
+## Downloading
 
-### 0.1) Setting up the JIT compiler
+Download Atomic using your preferred package manager.
 
-You should configure your installation of Tailwind to use the [JIT compiler](https://tailwindcss.com/docs/just-in-time-mode).
-Creating a `purge` configuration which includes any files that will make use of Atomic's styling.
+[Yarn](https://yarnpkg.com/) is shown below.
 
-```js
-// tailwind.config.js
-module.exports = {
-  mode: 'jit',
-  purge: [
-    './src/**/*.{js,jsx,ts,tsx,html,css}',
-  ],
-}
-```
-
-### 0.2) Theming
-
-Atomic makes no opinionations about the colors it uses, outside of those described in [Color palette](#03-color-palette).
-
-The theming which you *can* take advantage of is Tailwind's built-in support for detecting or toggling between [light and dark mode](https://tailwindcss.com/docs/dark-mode).
-
-You should enable dark mode in your `tailwind.config.js`, using whichever method is most appropriate for your project.
-
-> The use of `light` and `night` themes is explained in later documents.
-
-### 0.3) Colors
-
-Atomic only makes assumptions that two colors will exist: `gray` and `primary`.
-
-These colors should follow [Tailwind's lead](https://tailwindcss.com/docs/customizing-colors#overview) and have 10 different shades; named as given in the link.
-
-> `primary` was chosen to fit with what is commonly found in a design system or component library. See its [Cookbook entry](?path=/docs/documentation-cookbook--page#primary-color) for more information.
-
-```js
-// tailwind.config.js
-const colors = require('tailwindcss/colors')
-
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        gray: {
-          50: '#F4F4F6',
-          100: '#E5E5EB',
-          200: '#C0C0CE',
-          // ...
-        },
-        primary: colors.blue,
-      }
-    },
-  },
-}
-```
-
-## 1) Downloading Atomic
-
-Using NPM:
-
-```sh
-npm install --save-dev @locktech/atomic
-```
-
-Using [Yarn]():
-
-```sh
+```bash
 yarn add -D @locktech/atomic
 ```
 
-## 2) Using Atomic
+If your installation of Tailwind does not have you installing the [`tailwindcss` package](), you'll need to do so.
 
+```bash
+yarn add -D tailwindcss
+```
+
+## Installing
+
+Atomic must be included in your project's `tailwind.config.js` file.
+
+There are two ways in which you may do this.
+
+### As a Preset
+
+Including Atomic as a [preset](https://tailwindcss.com/docs/presets) has the added benefit of including all configuration Atomic requires/recommends.
+
+> You are still responsible for defining a [`purge` list](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css).
+
+To do so, update your `tailwind.config.js` file to include:
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  presets: [
+    require('@locktech/atomic'),
+  ],
+  purge: [
+    './src/**/*.{js,jsx,ts,tsx,html,css}',
+  ],
+  // ...
+}
+```
+
+This will configure the following for your installation of Tailwind:
+
+* Enable [dark-mode](https://tailwindcss.com/docs/dark-mode) in [manual mode](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually).
+* Enable [JIT mode](https://tailwindcss.com/docs/just-in-time-mode).
+* Load the Atomic plugin ([steps shown below](#as-a-plugin)).
+* Provide defaults for Atomic's [required colors](?path=/docs/documentation-cookbook--page#color).
+
+You can override any of these settings yourself, such as determining dark-mode based on the `prefers-color-scheme` media-feature.
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  presets: [
+    require('@locktech/atomic/preset'),
+  ],
+  purge: [
+    './src/**/*.{js,jsx,ts,tsx,html,css}',
+  ],
+  darkMode: 'media',
+  // ...
+}
+```
+
+### As a Plugin
+
+Using Atomic as a [plugin](https://tailwindcss.com/docs/plugins) provides the most control over your project, with zero side-effects from Atomic.
+
+To do so, simply load Atomic as one of your project's plugins:
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  plugins: [
+    require('@locktech/atomic/plugin'),
+  ],
+  purge: [
+    './src/**/*.{js,jsx,ts,tsx,html,css}',
+  ],
+  // ...
+}
+```
+
+You will then need to configure the following for your installation of Tailwind:
+
+* Provide a `gray` and `primary` [color](https://tailwindcss.com/docs/customizing-colors#custom-colors), following Tailwind's recommended structure (50, 100, 200, ...).
+
+Optionally you may:
+
+* Enable [dark-mode](https://tailwindcss.com/docs/dark-mode).

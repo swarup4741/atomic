@@ -55,40 +55,25 @@ By default, `'menu-items'` will provide **zero** distinction for items which are
 
 To mark an item as active, you can add the `'menu-item-active'` class to a `'menu-item'`; done as the user interacts with the menu.
 
-Alternatively, you can use the `'menu-item-static'` class. This will apply styling to the item, powered by pure-CSS (shown below).
-
-> Assigning the `'menu-item-active'` class is the recommended approach. In this way, the class can be applied when an element is hovered over,
-> when the user navigates to an item using their keyboard, etc. - this is provided out-of-the-box by HeadlessUI.
-
-<Canvas className="lg-canvas">
-  <Story name="Static">
-      <Menu as="div" className="menu">
-      <Menu.Button className="btn">Open Menu</Menu.Button>
-      <Menu.Items className="menu-items">
-        <Menu.Item as="button" className="menu-item-static">Item 1</Menu.Item>
-        <Menu.Item as="button" className="menu-item-static">Item 2</Menu.Item>
-        <Menu.Item as="button" className="menu-item-static">Item 3</Menu.Item>
-      </Menu.Items>
-    </Menu>
-  </Story>
-</Canvas>
+> Assigning the `'menu-item-active'` class through JavaScript is recommended. In this way, the class can be applied when an element is hovered over,
+> when the user navigates to an item using their keyboard, etc. - this is provided out-of-the-box by [HeadlessUI](https://headlessui.dev/react/menu).
 
 ## Right Aligned
 
-When your menu is placed close to the right side of the screen, you may wish to align the menu's items to the right edge of its parent (`'menu'`).
+When your menu is placed close to the right side of the screen, you may wish to align the menu's items by their right edge, not left.
 
-To do so, simply replace `'menu-items'` with `'menu-items-right'`.
+To do so, simply *add* `'menu-items-right'` alongside `'menu-items'`.
 
-> Note: `'menu-items-right'` **will not** align the entire `'menu'`, only the menu's items.
+> Note: `'menu-items-right'` **will not** align the entire `'menu'`, only the menu's items relative its parent (`'menu'`).
 
 > Note: Right-alignment will only take effect when the viewport is larger than the configured `sm` breakpoint;
-> in conjunction with [Restricted Height](#restricted-height) styling.
+> in conjunction with the [Restricted Height](#restricted-height) styling.
 
 <Canvas className="lg-canvas">
   <Story name="Right Aligned">
     <Menu as="div" className="menu ml-auto">
       <Menu.Button className="btn">Open Menu</Menu.Button>
-      <Menu.Items className="menu-items-right">
+      <Menu.Items className="menu-items menu-items-right">
         <Menu.Item>
           {({ active }) => <button className={`menu-item ${active ? 'menu-item-active' : ''}`}>Item 1</button>}
         </Menu.Item>

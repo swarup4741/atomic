@@ -22,12 +22,12 @@ export const Template = args => {
             Cras semper lobortis lectus nec dictum. Duis tempor odio purus rutrum, hendrerit auctor leo lacinia. Phasellus sit amet nunc accumsan, molestie arcu eget, laoreet tortor.
           </p>
           <label className="input-floating-group">
-            <input className="input-floating peer" placeholder="Username" readOnly type="text" value="Carl" />
+            <input className="input-floating" placeholder="Username" readOnly type="text" value="Carl" />
             <p className="input-floating-label">Username</p>
-            <p className="hint">Get wild! Use whatever you want!</p>
+            <p className="muted">Get wild! Use whatever you want!</p>
           </label>
           <label className="input-floating-group">
-            <input className="input-floating peer" placeholder="New Password" type="password" />
+            <input className="input-floating" placeholder="New Password" type="password" />
             <p className="input-floating-label">New Password</p>
           </label>
           <Switch.Group as="label" className="input-group">
@@ -35,11 +35,11 @@ export const Template = args => {
             <Switch checked={isChecked} onChange={setIsChecked} className={`switch-track ${isChecked && 'switch-track-active'}`}>
               <span aria-hidden="true" className="switch-thumb" />
             </Switch>
-            <Switch.Label className="hint">When turned on, the application will not log you out of your account after closing it.</Switch.Label>
+            <Switch.Label className="muted">When turned on, the application will not log you out of your account after closing it.</Switch.Label>
           </Switch.Group>
           <div className="flex flex-row self-end space-x-4">
             <button
-              className="btn-primary"
+              className="btn btn-primary"
               onClick={() => setIsOpen(false)}  
             >
               Update

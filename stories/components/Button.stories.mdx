@@ -6,7 +6,7 @@ export const Template = (args) => <button {...args} />
 
 # Button
 
-The `'button'` is a simple component which provides an extensible platform for creating interactive elements, which are typically clicked or tapped.
+`'btn'` is a simple component which provides an extensible platform for creating interactive elements, which are typically clicked or tapped.
 
 <Canvas>
   <Story
@@ -19,7 +19,9 @@ The `'button'` is a simple component which provides an extensible platform for c
 
 ## Disabled
 
-The disabled styling provided should suffice for any, custom included, renditions of the button component.
+The disabled styling provided should suffice for any instance of the button component.
+
+If you do override the disabled styling, do so for every button to give your user a consistent experience.
 
 <Canvas>
   <Story
@@ -63,11 +65,11 @@ By default, buttons are sized to `btn-md`.
 
 ## Color
 
-`btn-primary` can be used to styling the button using your configured primary color.
+`btn-primary` can be added style the button using your configured primary color.
 
 <Canvas>
   <Story
-    args={{ children: 'Primary', className: 'btn-primary' }}
+    args={{ children: 'Primary', className: 'btn btn-primary' }}
     name="Primary"
   >
     {Template.bind({})}

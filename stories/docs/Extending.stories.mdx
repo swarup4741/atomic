@@ -4,125 +4,67 @@ import { Meta } from '@storybook/addon-docs';
 
 # Extending Atomic
 
-By design, Atomic's styling is easy and straight-forward to customize. This is due to the fact that all of its styles are built into [TailwindCSS' layer system](https://tailwindcss.com/docs/functions-and-directives#layer)
+Atomic makes it easy to extend any of its classes styles, both globally and on a per-element basis.
 
-This dependency on Tailwind's functionality makes this particular document only one-part extending Atomic, and one-part using [Tailwind's functions and directives](https://tailwindcss.com/docs/functions-and-directives) to create custom classes.
+Before explaining how to extend these classes, let's take a look at how the classes are structured.
 
-## TailwindCSS Incorporation
+Classes are organized into families. Each family can have `n` number of classes, with some having one and and others more.
+Classes in the same family are always prefixed with the same name, all classes under `'input-*'` (including `'input'`) are in the input family.
+Families can add classes to any three of Tailwind's layers.
 
-It's recommended you incorporate your custom classes into Tailwind's layer system. This will ensure any stale-styles are [excluded](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css) from your final CSS.
+Families are then organizied under a similar structure to Tailwind's layer system.
+As a general rule of thumb, families found under the following categories have the following properties:
 
-It will also let you use your own classes with Tailwind's [`@apply`](https://tailwindcss.com/docs/functions-and-directives#apply) directive, promoting reuse.
+* **Base** - Are always added to Tailwind's base layer.
+* **Components** - Add classes to all three, most of which only adding classes to `component`, of Tailwind's layers under the following rules:
+  * `base` - Not applicible.
+  * `components` - The default styling of the component.
+  * `utilities` - Classes which augment the default styling, typically appearing alongside the `component` class.
+* **Utilities** - Are always added to Tailwind's utilities layer.
 
-## Simple Example
+> Because 2 out of 3 of the family-categories follow-suit with Tailwind's naming, the choice was made to keep the naming consistent.
+> It also reinforces the visual perception of what these families provide:
+> component-styling is in-line with what is considered a component, minus the functionality.
 
-Atomic is just styling, behaving according to all the rules normal CSS would. To illustrate this, the most simple extension of Atomic's styling is to overwrite one of its classes' CSS.
+## Global Overrides
 
-```css
-.btn {
-  background: black;
-}
-```
-
-The example above will set the `background` of all elements which use the `'btn'` class to black - retaining the other styles which Atomic has assigned to it; no Tailwind or other wizardry involved.
-
-Just as easily, this CSS could have been written to take advantage of Tailwind's [`@apply`](https://tailwindcss.com/docs/functions-and-directives#apply) directive.
-
-```css
-.btn {
-  @apply bg-black;
-}
-```
-
-Or, to incorporate its styling into Tailwind's layer system:
+To override the styles for every instance of a class Atomic provides, add your styling over-top Atomic's in your own `@layer` definition:
 
 ```css
 @layer components {
   .btn {
-    @apply bg-black;
+    @apply rounded-lg;
   }
 }
 ```
 
-This CSS can be loaded in whatever way you'd traditionally apply styling to your application.
-
-* Load it globally.
-* Apply it to only a specific element.
-* ...
-
-## Custom Button
-
-Suppose that, in addition to the sizes provided by Atomic, you need an `xs` button:
-
-```css
-/* Recommended */
-
-@layer utilities {
-  .btn-xs {
-    @apply px-1.5 py-0.5;
-  }
-}
-
-/* Or */
-
-.btn-xs {
-  @apply px-1.5 py-0.5;
-}
-
-/* Or */
-
-.btn-xs {
-  padding: 0.125rem 0.25rem 0.125rem 0.25rem;
-}
-```
-
-Using this size follows suit with use of Atomic's default button-sizes.
-
-```html
-<button class="btn btn-xs">Honey I shrunk the buttons</button>
-```
-
-By default, Atomic only includes two (three, counting disabled) colors for its button component.
-Creating additional colors is a simple task: the way in which you define a custom color is the same way Atomic provides its `btn-primary` class.
-
-We can even put this style right next to our `'btn-xs'` class.
+Similarly, *Component* families can have additional styles added, taking the form of a component-variant:
 
 ```css
 @layer utilities {
-  .btn-xs {
-    @apply px-1.5 py-0.5;
-  }
-
-  .btn-green {
-    @apply btn;
-    @apply bg-green-500 hover:bg-green-600 active:bg-green-700;
-    @apply focus:ring-green-400 active:focus:ring-green-500;
+  .btn-red {
+    @apply btn; /* btn is applied first, to overwrite its defaults */
+    @apply bg-red-500 hover:bg-red-600 active:bg-red-700;
+    @apply focus:ring-red-400 active:focus:ring-red-500;
     @apply text-gray-50;
   }
 }
-
-/* Equally valid */
-
-.btn-xs {
-  @apply px-1.5 py-0.5;
-}
-
-.btn-green {
-  @apply btn;
-  @apply bg-green-500 hover:bg-green-600 active:bg-green-700;
-  @apply focus:ring-green-400 active:focus:ring-green-500;
-  @apply text-gray-50;
-}
 ```
 
-The above snippet is accomplishing a few things:
-
-1. It adds a new class, `'btn-green'`, to the `utilities` layer.
-2. It extends the `'btn'` class; inheriting all of its styling - freeing the need to write `class="btn btn-green"` and making our intentions more clear.
-3. It provides styles custom to the `'btn-green'` class, safely overriding the defaults of `'btn'`.
-
-Using your new class is identical to using the `'btn'` class:
+Using this class could look something like:
 
 ```html
-<button class="btn-green btn-xs">Little green giant</button>
+<button class="btn btn-red">Button</button>
+```
+
+## Per-Element Overrides
+
+Overriding a specific element is as easy as providing your own or Tailwind's classes *after* Atomic's.
+
+```html
+<button
+  className="btn bg-red-500 hover:bg-red-600 active:bg-red-700 focus:ring-red-400 active:focus:ring-red-500 text-gray-50"
+>
+  Danger
+</button>
 ```

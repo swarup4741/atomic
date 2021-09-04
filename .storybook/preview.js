@@ -4,8 +4,6 @@ import theme from './theme'
 import { clickDocsButtonOnFirstLoad } from './util'
 import './index.css'
 
-import '../src/index.css'
-
 export const decorators = [
   (storyFunc, context) => {
     useEffect(() => {
