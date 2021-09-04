@@ -7,10 +7,11 @@ import { Meta } from '@storybook/addon-docs';
 On this page are  examples of how to use this; including best practices and common pitfalls.
 
 * [Don't use Atomic](#dont-use-atomic)
-* [Primary Color](#primary-color)
+* [Color](#color)
 * [HeadlessUI](#headlessui)
-* [Global Overrides](#global-overrides)
-* [Atomic's Colors](#atomics-colors)
+* [Applications](#applications)
+* [Examples](#examples)
+* [LockTech's Colors](#locktechs-colors)
 
 ## Don't use Atomic
 
@@ -21,17 +22,14 @@ Only make use of this library if you read through the Introduction and thought "
 *Atomic is just a collection of classes*, built using Tailwind's utility classes. If you only need it for one application and can/want to dedicate the time
 to creating that applications design yourself; do so using Tailwind on its own. Feel free to use Atomic's source for inspiration/reference; it'd mean just as much as actually using it!
 
-So treat this library like any other library; this is your friendly reminder :)
+So treat this library like any other library, this is your friendly reminder; just so you don't reimplement Atomic yourself while trying to use it :)
 
-## Primary Color
+## Color
 
 Atomic assumes that two colors will be present when Tailwind compiles your CSS: `gray` and `primary`.
 
 * `Gray` is used in almost every class to provide shape, contrast, and other visual cues.
 * `Primary` is used as a way for Atomic to have some notion of color outside of gray, and still remain ambigious to what color it actually is.
-
-The primary color also acts as a way to provide examples for how Atomic's base design can be extended to customize your application.
-The way in which a primary button is defined is the same way you'd go about defining a secondary, tertiary, or red, blue...
 
 ## HeadlessUI
 
@@ -41,31 +39,30 @@ It pairs well with some of Atomic's classes, and is even used in this documentat
 HeadlessUI is the recommended approach for adding JS functionality to your application, which can be styled by Atomic's classes.
 The two libraries should be a seamless integration.
 
-## Global Overrides
+## Applications
 
-Suppose you want to overwrite the border radius on *every* button in your application.
+**Open Source**
 
-No problem, just add your styling to the `.btn` class in a custom `@layer` declaration:
+* [Cerberus](https://github.com/LockTech/cerberus) - A multi-tenant account and permission management platform.
 
-```css
-@layer components {
-  .btn {
-    @apply rounded-lg;
-  }
-}
-```
+**Proprietary**
 
-Assuming you load Atomic's styles before defining this one, your styles will safely override Atomic's defaults; merging the two together.
-You will be left with a button which resembles Atomic's default one - just with more rounded corners.
+* n/a
 
-## Atomic's Colors
+## Examples
+
+* [Atomic Example](https://github.com/LockTech/atomic-example) - A simple, `http-server` and HTML based example for using Atomic.
+
+## LockTech's Colors
 
 The colors used for this documentation (both the Storybook theme and in examples) are part of LockTech's branding - gray, in particular, is used accross all of our applications.
+
+These are the colors provided by Atomic, when used as a [preset](?path=/docs/documentation-installation--page#as-a-preset).
 
 If you are simply *in love*, feel free to use them in your own project(s)!
 
 > These colors were generated using [niceramps](https://github.com/MathGeniusJodie/niceramps), a very nice tool made by GitHub user [MathGeniusJodie](https://github.com/MathGeniusJodie).
-> They were then manually adjusted to provide a more pleasing contrast, and to improve user experience.
+> They were then manually adjusted to provide a more pleasing contrast and to improve accessibility.
 
 ```js
 // Taken from this repo's `tailwind.config.js`

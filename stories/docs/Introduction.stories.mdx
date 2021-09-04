@@ -4,17 +4,13 @@ import { Meta } from '@storybook/addon-docs';
 
 # Atomic
 
-Atomic is a collection of CSS classes, built using the [TailwindCSS](https://tailwindcss.com/) framework.
-It provides **only** styling; no JavaScript included.
-
-> A good way to describe it is through comparison: it's similar to [Pure.css](https://purecss.io/), with no requirement to use specific markup, and built with the power of Tailwind.
+Atomic is a [TailwindCSS](https://tailwindcss.com) [plugin](https://tailwindcss.com/docs/plugins) which provides styling for commonly encountered UI components.
 
 It contains `base`, `component`, and `utility` classes which:
 
 * Help to accelerate building a prototype application.
 * Provide a sensible foundation on which to build an application's visual identity.
 * Form a platform for implementating a consistent design accross many, seperate applications.
-* Are, by design, highly customizable in a decoupled, but impactful manner.
 
 The rest of this introduction provides background on Atomic's guiding principles and instructions/cavets for using this [Storybook](https://storybook.js.org/).
 
@@ -30,11 +26,14 @@ which follow those system's principles.
 Many of the principles listed here blend with one another.
 
 * **Reusable foundation** - Whether its quickly prototyping an idea or fulfilling the need for a consistent experience accross many code-bases, Atomic's styling favors reuse and promotes easy change at any point in an application's life - to meet the needs of *that* application.
-* **Gets out of your way** - Atomic only provides *styling*. It purposefully does not include any JavaScript, and isn't actually made up of components in the traditional, import-and-use-this-thing-in-this-way sense. You define the markup for your application and add Atomic's classes where you need them; [extending them](?path=/story/documentation-extending-atomic--page) if needed. Plus, Atomic's integration with [Tailwind's layer system](https://tailwindcss.com/docs/functions-and-directives#layer) means styles you don't use are not included in your final CSS.
+* **Gets out of your way** - Atomic only provides *styling*. It purposefully does not include any JavaScript*, and isn't actually made up of components in the traditional, import-and-use-this-thing-in-this-way sense. You define the markup for your application and add Atomic's classes where you need them; [extending them](?path=/story/documentation-extending-atomic--page) if needed. Plus, Atomic's integration with [Tailwind's layer system](https://tailwindcss.com/docs/functions-and-directives#layer) means styles you don't use are not included in your final CSS.
 * **Framework agnostic** - Atomic does not rely upon any JavaScript framework, library, or tool - Tailwind excluded. This means it works wherever Tailwind works; [which includes quite a few places](https://tailwindcss.com/docs/installation#integration-guides) ([VanillaJS](http://vanilla-js.com/) included).
   * This requirement on Tailwind is, like Tailwind itself, a development dependency. A production build with Atomic's styling is self-contained CSS.
 * **Consistent** - Atomic has strong opinionations concerning the design of its styles - i.e., how it looks. Because styles are highly reusable, it's easy to build a component using parts of another and ensure consistency with a third, seemingly unrelated element.
 * **It's not clingy** - Atomic is a collection of opinionated implmentations of Tailwind's utility classes, made using much of its [other functionality](https://tailwindcss.com/docs/functions-and-directives). Want to drop Atomic and do-it-yourself using Tailwind? Go ahead! Thanks for stopping by! ❤️
+
+\* - As a development-dependency, Atomic is JavaScript; this is how it's implemented as a [Tailwind plugin](https://tailwindcss.com/docs/plugins).
+Once you build your CSS (using PostCSS, Tailwind's CLI, etc.), Atomic will only burden your application with CSS - just like Tailwind.
 
 ## Using Storybook
 

@@ -21,12 +21,12 @@ For example, you can use the CSS below to turn all `btn` element's focus ring co
 }
 ```
 
-To override all instances of the focus class, provide your styling in the `utilities` layer:
+## Using Focus
 
-```css
-@layer utilities {
-  .focus {
-    @apply focus:ring-primary-500;
-  }
-}
-```
+> Sorry for the duplication, but it is functional! 
+
+<Canvas>
+  <Story name="Test">
+    <button className="focus:focus">Button</button>
+  </Story>
+</Canvas>
