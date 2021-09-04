@@ -1,6 +1,6 @@
 module.exports = {
   presets: [
-    require('./src/preset'),
+    require('./preset'),
   ],
   purge: [
     './src/**/*.{js,jsx,ts,tsx,html,css}',

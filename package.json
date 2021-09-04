@@ -1,15 +1,14 @@
 {
-  "version": "2.0.1",
+  "version": "2.1.0",
   "name": "@locktech/atomic",
   "author": "realStandal",
   "repository": "github:locktech/atomic",
   "license": "MIT",
   "files": [
-    "src"
+    "src",
+    "./plugin.js",
+    "./preset.js"
   ],
-  "exports": {
-    "./": "./src/"
-  },
   "engines": {
     "node": ">=10"
   },
