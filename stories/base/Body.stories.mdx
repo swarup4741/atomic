@@ -23,3 +23,18 @@ The following will apply the `bg-gray-50` class to the `<body>` element, regardl
   }
 }
 ```
+
+To completely remove dark mode styling, update your `tailwind.config.js` file to resemble the following:
+
+```js
+module.exports = {
+  presets: [
+    require('@locktech/atomic/preset'),
+  ],
+  purge: [
+    './src/**/*.{js,jsx,ts,tsx,html,css}',
+    './stories/**/*.{js,jsx,ts,tsx,html,css,mdx}',
+  ],
+  darkMode: false,
+}
+```
