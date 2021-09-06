@@ -4,27 +4,20 @@ import { Meta } from '@storybook/addon-docs';
 
 # Extending Atomic
 
-Atomic makes it easy to extend any of its classes styles, both globally and on a per-element basis.
+Atomic makes it easy to extend any of its class' styles, both globally and on a per-element basis.
 
 Before explaining how to extend these classes, let's take a look at how the classes are structured.
 
-Classes are organized into families. Each family can have `n` number of classes, with some having one and and others more.
-Classes in the same family are always prefixed with the same name, all classes under `'input-*'` (including `'input'`) are in the input family.
+Classes are organized into families. Each family can have `n` number of classes, with some having one and others more.
+Classes in the same family are always prefixed with the same name: all classes prefixed with `input` are in the input family.
 Families can add classes to any three of Tailwind's layers.
 
 Families are then organizied under a similar structure to Tailwind's layer system.
 As a general rule of thumb, families found under the following categories have the following properties:
 
 * **Base** - Are always added to Tailwind's base layer.
-* **Components** - Add classes to all three, most of which only adding classes to `component`, of Tailwind's layers under the following rules:
-  * `base` - Not applicible.
-  * `components` - The default styling of the component.
-  * `utilities` - Classes which augment the default styling, typically appearing alongside the `component` class.
+* **Components** - Primarilly use Tailwind's components layer, adding base and utility classes to set the stage or augment these component-classes.
 * **Utilities** - Are always added to Tailwind's utilities layer.
-
-> Because 2 out of 3 of the family-categories follow-suit with Tailwind's naming, the choice was made to keep the naming consistent.
-> It also reinforces the visual perception of what these families provide:
-> component-styling is in-line with what is considered a component, minus the functionality.
 
 ## Global Overrides
 
@@ -38,12 +31,13 @@ To override the styles for every instance of a class Atomic provides, add your s
 }
 ```
 
-Similarly, *Component* families can have additional styles added, taking the form of a component-variant:
+You can even add your own augmentations which make use of classes defined in previous layers.
+
+The following will add a `'btn-red'` class, which implicitly has a dependency on the `'btn'` base-styles.
 
 ```css
 @layer utilities {
   .btn-red {
-    @apply btn; /* btn is applied first, to overwrite its defaults */
     @apply bg-red-500 hover:bg-red-600 active:bg-red-700;
     @apply focus:ring-red-400 active:focus:ring-red-500;
     @apply text-gray-50;
@@ -59,7 +53,7 @@ Using this class could look something like:
 
 ## Per-Element Overrides
 
-Overriding a specific element is as easy as providing your own or Tailwind's classes *after* Atomic's.
+Overriding a specific element is as easy as providing your own, or Tailwind's, classes *after* Atomic's.
 
 ```html
 <button
@@ -68,3 +62,5 @@ Overriding a specific element is as easy as providing your own or Tailwind's cla
   Danger
 </button>
 ```
+
+> Extracting styling out into a reusable class is almost always the preferred approach; you know what's best for your application, though :)
