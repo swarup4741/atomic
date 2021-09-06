@@ -4,34 +4,27 @@ import { Meta, Story, Canvas } from '@storybook/addon-docs'
 
 # Input
 
-The `input` component is (one of) the only class(es) which is designed with a specific markup in mind.
-That said, it is still perfectly acceptable to re-use its styling in other styles; Doing say may include unnecessary styling, depending on your application's needs.
-
-The easiest way to use the input is through the `'input'` class, providing very simple styling to the input's border, placeholder, and text.
+The `'input'` component is one of the only classes which is designed with a specific element in mind: `<input>`.
 
 <Canvas>
   <Story name="Default">
-    <form>
-      <input className="input" placeholder="Input" />
-    </form>
+    <input className="input" placeholder="Input" />
   </Story>
 </Canvas>
 
 ## Labeled
 
-`'text'` and `'hint'` can be used to provide additional context to the input.
+`'input-label'` and `'input-hint'` can be used to provide additional context to the input.
 
 The `'input-group'` class can be wrapped around the input and these elements to help with layout and positioning.
 
 <Canvas>
   <Story name="Labeled">
-    <form>
-      <label className="input-group">
-        <p className="text">Oranges</p>
-        <input className="input" placeholder="Your opinion?" />
-        <p className="muted hint">They're a (subjectively) delicious fruit.</p>
-      </label>
-    </form>
+    <label className="input-group">
+      <p className="input-label">Oranges</p>
+      <input className="input" placeholder="Your opinion?" />
+      <p className="input-hint">They're a (subjectively) delicious fruit.</p>
+    </label>
   </Story>
 </Canvas>
 
@@ -41,23 +34,10 @@ The `'muted'` class can be added to the input's label to style it when its input
 
 <Canvas>
   <Story name="Disabled">
-    <form>
-      <label className="input-group">
-        <p className="muted">Disabled</p>
-        <input className="input" disabled placeholder="Disabled" />
-      </label>
-    </form>
-  </Story>
-</Canvas>
-
-<Canvas>
-  <Story name="Disabled with a value">
-    <form>
-      <label className="input-group">
-        <p className="muted">Disabled</p>
-        <input className="input" disabled placeholder="Disabled" readOnly value="Hello World" />
-      </label>
-    </form>
+    <label className="input-group">
+      <p className="muted">Disabled</p>
+      <input className="input" disabled placeholder="Disabled" />
+    </label>
   </Story>
 </Canvas>
 
@@ -65,95 +45,89 @@ The `'muted'` class can be added to the input's label to style it when its input
 
 ### Error
 
-`'input-error'` and `'input-label-error'` can be *added* to the respective input and label to provide a visual indication of an error.
+`'input-error'` and `'input-success'` classes can be *added* to the element making use of `'input'` to mark the input's value, or lackof,
+errorful or successful.
 
 <Canvas>
   <Story name="Error">
-    <form>
-      <label className="input-group">
-        <p className="input-label-error">Error</p>
-        <input className="input input-error" placeholder="Error" />
-      </label>
-    </form>
+    <label className="input-group">
+      <p className="input-label">Error</p>
+      <input className="input input-error" placeholder="An errorful empty input" />
+    </label>
   </Story>
 </Canvas>
 
-### Success
-
-`'input-success'` and `'input-label-success'` can be *added* to the respective input and label to provide a visual indication of a successful input.
-
 <Canvas>
   <Story name="Success">
-    <form>
-      <label className="input-group">
-        <p className="input-label-success">Success</p>
-        <input className="input input-success" placeholder="Success" />
-      </label>
-    </form>
+    <label className="input-group">
+      <p className="input-label">Success</p>
+      <input className="input input-success" placeholder="A successfully empty input" />
+    </label>
   </Story>
 </Canvas>
 
 ## Floating Label
 
-The following classes can *replace* their respective counterparts to create a floating input.
+Add the `'floating'` class to an `'input-group'` to create a floating label.
 
-* `'input-floating'`
-* `'input-floating-group'`
-* `'input-floating-label'`
+> Due to the way [adjecent sibling selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator) work, `'input-label'` must appear *after* `'input'`.
 
-> **Note:** Due to the way [adjecent sibling selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator) work, `'input-floating-label'` must be added *after* `'input-floating'`.
+> Your `'input'` element *will* need a `placeholder` assigned.
 
 <Canvas>
   <Story name="Floating Label">
-    <form>
-      <label className="input-floating-group">
-        <input className="input-floating" placeholder="Floating" />
-        <p className="input-floating-label">Floating</p>
-        <p className="muted hint">This hint doesn't float :(</p>
-      </label>
-    </form>
+    <label className="input-group floating">
+      <input autoComplete="name" className="input" placeholder="Jane Doe" />
+      <p className="input-label">Full Name</p>
+      <p className="input-hint">This hint doesn't float :(</p>
+    </label>
+  </Story>
+</Canvas>
+
+As expected, manually adding a `value` to the `'input'` will cause its label to appear in the "floating" position:
+
+<Canvas>
+  <Story name="Floating Label w/ Value">
+    <label className="input-group floating">
+      <input autoComplete="name" className="input" placeholder="Jane Doe" value="Janeth Doeith" />
+      <p className="input-label">Full Name</p>
+      <p className="input-hint">This hint doesn't float :(</p>
+    </label>
   </Story>
 </Canvas>
 
 ## Floating Validation
 
-Both the `'input-*'` and `'input-label-*'` validation classes can be used to style a floating input.
+Both `'input-error'` and `'input-success'` validation classes can be re-used to style a floating input.
+They should be *added* to the `'input'` element, just as they would for a traditional input field.
 
 <Canvas>
   <Story name="Floating Error">
-    <form>
-      <label className="input-floating-group">
-        <input className="input-floating input-error" placeholder="Floating" />
-        <p className="input-floating-label input-label-error">Floating</p>
-        <p className="muted hint">This hint doesn't float :(</p>
-      </label>
-    </form>
+    <label className="input-group floating">
+      <input className="input input-error" placeholder="Floating" />
+      <p className="input-label">Floating Error</p>
+      <p className="input-hint">This hint doesn't float :(</p>
+    </label>
   </Story>
 </Canvas>
 
 <Canvas>
   <Story name="Floating Success">
-    <form>
-      <label className="input-floating-group">
-        <input className="input-floating input-success" placeholder="Floating" />
-        <p className="input-floating-label input-label-success">Floating</p>
-        <p className="muted hint">This hint doesn't float :(</p>
-      </label>
-    </form>
+    <label className="input-group floating">
+      <input className="input input-success" placeholder="Floating" />
+      <p className="input-label">Floating Success</p>
+      <p className="input-hint">This hint doesn't float :(</p>
+    </label>
   </Story>
 </Canvas>
 
 ## Disabled Floating Label
 
-Unlike the default label, the `'input-floating-label'` element will provide its own styling for the `disabled` state.
-
 <Canvas>
   <Story name="Disabled Floating Label">
-    <form>
-      <label className="input-floating-group">
-        <input className="input-floating" disabled placeholder="Floating" />
-        <p className="input-floating-label">Floating</p>
-      </label>
-    </form>
+    <label className="input-group floating">
+      <input className="input" disabled placeholder="Floating" />
+      <p className="input-label">Disabled Floating</p>
+    </label>
   </Story>
 </Canvas>
