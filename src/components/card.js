@@ -6,10 +6,10 @@ const card = {
         borderColor: theme('colors.gray.200'),
         borderRadius: theme('borderRadius.md'),
         borderWidth: theme('borderWidth.DEFAULT'),
+        boxShadow: theme('boxShadow.DEFAULT'),
         display: 'flex',
         flexDirection: 'column',
         padding: theme('spacing.4'),
-        boxShadow: theme('boxShadow.DEFAULT'),
       },
       '.dark .card': {
         backgroundColor: theme('colors.gray.800'),
