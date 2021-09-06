@@ -13,6 +13,7 @@ const list = [
   require('./src/components/button'),
   require('./src/components/card'),
   require('./src/components/input'),
+  require('./src/components/link'),
   require('./src/components/menu'),
   require('./src/components/modal'),
   require('./src/components/select'),
