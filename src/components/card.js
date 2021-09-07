@@ -3,7 +3,7 @@ const card = {
     return {
       '.card': {
         backgroundColor: theme('colors.white'),
-        borderColor: theme('colors.gray.200'),
+        borderColor: theme('colors.gray.100'),
         borderRadius: theme('borderRadius.md'),
         borderWidth: theme('borderWidth.DEFAULT'),
         boxShadow: theme('boxShadow.DEFAULT'),
