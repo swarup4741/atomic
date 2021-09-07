@@ -8,6 +8,7 @@ const link = {
         ...movement.base({ theme }).movement,
         borderRadius: theme('borderRadius.DEFAULT'),
         color: theme('colors.primary.600'),
+        cursor: theme('cursor.pointer'),
         textDecoration: 'underline',
         '&:focus': {
           ...focus.base({ theme })['.focus'],
