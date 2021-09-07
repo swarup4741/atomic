@@ -10,7 +10,10 @@ The `'card'` component provides a distinctive background, border, elevating shad
 
 <Canvas>
   <Story
-    args={{ children: <p>Hello world!</p>, className: 'card' }}
+    args={{
+      children: <p className="text">Hello world!</p>,
+      className: 'card',
+    }}
     name="Default"
   >
     {Template.bind({})}
