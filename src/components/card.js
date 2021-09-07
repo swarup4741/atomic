@@ -13,7 +13,7 @@ const card = {
       },
       '.dark .card': {
         backgroundColor: theme('colors.gray.800'),
-        borderColor: theme('colors.gray.500'),
+        borderColor: theme('colors.gray.700'),
       },
     }
   },
