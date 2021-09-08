@@ -152,6 +152,20 @@ const input = {
           '--tw-ring-color': `rgba(${hexToRgb(theme('colors.green.400'))}, var(--tw-ring-opacity))`,
         },
       },
+      //
+      '.input-error-label': {
+        color: theme('colors.red.500'),
+      },
+      '.dark .input-error-label': {
+        color: theme('colors.red.400'),
+      },
+      //
+      '.input-success-label': {
+        color: theme('colors.green.600'),
+      },
+      '.dark .input-success-label': {
+        color: theme('colors.green.400')
+      }
     }
   },
 }

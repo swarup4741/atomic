@@ -43,6 +43,30 @@ The `'muted'` class can be added to the input's label to style it when its input
 
 ## Validation
 
+`'input-error'` and `'input-success'` classes can be added to the element making use of 'input' to mark the input's value, or lackof, errorful or successful.
+
+`'input-error-label'` and `'input-success-label'` can be used to quickly styling additional, contextual information in response to an input having an error or being successfully filled out.
+
+<Canvas>
+  <Story name="Error">
+    <label className="input-group">
+      <p className="input-label">Error</p>
+      <input className="input input-error" placeholder="An errorful empty input" />
+      <p className="input-error-label>Oh no! An error!</p>
+    </label>
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Success">
+    <label className="input-group">
+      <p className="input-label">Success</p>
+      <input className="input input-success" placeholder="A successful empty input" />
+      <p className="input-success-label>It is a success!</p>
+    </label>
+  </Story>
+</Canvas>
+
 ### Error
 
 `'input-error'` and `'input-success'` classes can be *added* to the element making use of `'input'` to mark the input's value, or lackof,
